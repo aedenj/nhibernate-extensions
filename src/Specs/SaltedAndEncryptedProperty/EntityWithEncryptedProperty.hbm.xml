@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" 
+                   assembly="NHibernateExtensions.Specs" 
+                   namespace="NHibernateExtensions.Specs" 
+                   default-lazy="false">
+  <class name="EntityWithEncryptedProperty" table="EntityWithEncryptedProperty">
+    <id name="Id" column="Id">
+      <generator class="native"/>
+    </id>
+
+    <property name="EncryptedProperty" type="NHibernateExtensions.SaltedAndEncryptedProperty.SaltedEncryptedString, NHibernateExtensions.SaltedAndEncryptedProperty" not-null="false">
+      <column name="Value" sql-type="nvarchar(128)"/>
+      <column name="Salt" sql-type="nvarchar(32)"/>
+    </property>
+  </class>
+
+</hibernate-mapping>
