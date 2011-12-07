@@ -135,10 +135,43 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\..\lib\sqlce-4.0\amd64\sqlceca40.dll">
+      <Link>amd64\sqlceca40.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\lib\sqlce-4.0\amd64\sqlceme40.dll">
+      <Link>amd64\sqlceme40.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\lib\sqlce-4.0\amd64\sqlceqp40.dll">
+      <Link>amd64\sqlceqp40.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\lib\sqlce-4.0\amd64\sqlcese40.dll">
+      <Link>amd64\sqlcese40.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\lib\sqlce-4.0\x86\sqlceca40.dll">
+      <Link>x86\sqlceca40.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\lib\sqlce-4.0\x86\sqlceme40.dll">
+      <Link>x86\sqlceme40.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\lib\sqlce-4.0\x86\sqlceqp40.dll">
+      <Link>x86\sqlceqp40.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\lib\sqlce-4.0\x86\sqlcese40.dll">
+      <Link>x86\sqlcese40.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="NHibernateExtensions.sdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
