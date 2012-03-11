@@ -8,7 +8,7 @@ namespace NHibernateExtensions.Specs.SaltedAndEncryptedProperty
     public class when_persisting_null : PersistenceContext
     {
         #region scenario specific context setup
-        private readonly EntityWithEncryptedProperty UnpersistedEntityWithNullProperty = new EntityWithEncryptedProperty { EncryptedProperty = null };
+        private readonly User UnpersistedEntityWithNullProperty = new User { Password = null };
         #endregion
 
 
@@ -20,15 +20,10 @@ namespace NHibernateExtensions.Specs.SaltedAndEncryptedProperty
         [Test]
         public void then_a_row_is_inserted()
         {
-            CurrentNumberOfRowsInDb().ShouldEqual(1);
+            Users.Count().ShouldEqual(1);
         }
 
 
-        #region scenario helpers
-        private static int CurrentNumberOfRowsInDb()
-        {
-            return QueryHelper.ExecuteScalarQuery<int>("SELECT COUNT(*) FROM EntityWithEncryptedProperty");
-        }
-        #endregion
+
     }
 }

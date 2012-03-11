@@ -10,7 +10,7 @@ namespace NHibernateExtensions.SaltedAndEncryptedProperty
     /// <remarks>
     /// The CipherMode chosen for the algorithm is Cipher Block Chaining (CBC)s
     /// </remarks>
-    internal abstract class RijndaelManagedBase
+    abstract class RijndaelManagedBase
     {
         protected RijndaelManagedBase(byte[] TheKey, byte[] TheInitialVector)
         {

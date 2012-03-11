@@ -46,6 +46,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FluentNHibernate">
+      <HintPath>..\packages\FluentNHibernate.1.3.0.717\lib\FluentNHibernate.dll</HintPath>
+    </Reference>
     <Reference Include="Iesi.Collections, Version=1.0.1.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <HintPath>..\packages\Iesi.Collections.3.2.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
     </Reference>
@@ -53,14 +56,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\NHibernate.3.2.0.4000\lib\Net35\NHibernate.dll</HintPath>
     </Reference>
-    <Reference Include="nunit.framework, Version=2.5.10.11092, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <HintPath>..\packages\NUnit.2.5.10.11092\lib\nunit.framework.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.mocks">
-      <HintPath>..\packages\NUnit.2.5.10.11092\lib\nunit.mocks.dll</HintPath>
-    </Reference>
-    <Reference Include="pnunit.framework">
-      <HintPath>..\packages\NUnit.2.5.10.11092\lib\pnunit.framework.dll</HintPath>
+    <Reference Include="nunit.framework, Version=2.6.0.12051, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NUnit.2.6.0.12054\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -78,11 +76,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NHibernate.cs" />
     <Compile Include="SaltedAndEncryptedProperty\PersistenceContext.cs" />
     <Compile Include="SaltedAndEncryptedProperty\QueryHelper.cs" />
+    <Compile Include="SaltedAndEncryptedProperty\Users.cs" />
     <Compile Include="SaltedAndEncryptedProperty\when_persisting_null.cs" />
-    <Compile Include="SaltedAndEncryptedProperty\when_hydrating_a_non_empty_value.cs" />
-    <Compile Include="SaltedAndEncryptedProperty\EntityWithEncryptedProperty.cs" />
+    <Compile Include="SaltedAndEncryptedProperty\when_hydrating_a_non_null_value.cs" />
+    <Compile Include="SaltedAndEncryptedProperty\User.cs" />
     <Compile Include="Extensions\ContextSpecification.cs" />
     <Compile Include="Extensions\SpecificationExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -92,18 +92,13 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="SaltedAndEncryptedProperty\when_evaluating_equality.cs" />
-    <Compile Include="SaltedAndEncryptedProperty\when_persisting_a_non_empty_value.cs" />
+    <Compile Include="SaltedAndEncryptedProperty\when_persisting_a_non_null_value.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SaltedAndEncryptedProperty\SaltedAndEncryptedProperty.csproj">
       <Project>{78E33CD3-2116-4352-B6A7-F9A9246316EF}</Project>
       <Name>SaltedAndEncryptedProperty</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="SaltedAndEncryptedProperty\EntityWithEncryptedProperty.hbm.xml">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">

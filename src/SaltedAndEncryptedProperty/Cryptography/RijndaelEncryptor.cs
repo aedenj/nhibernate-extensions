@@ -10,7 +10,7 @@ namespace NHibernateExtensions.SaltedAndEncryptedProperty
     /// <summary>
     /// Provides the ability to encrypt a string using the Rijndael algorithm
     /// </summary>
-    internal sealed class RijndaelEncryptor
+    sealed class RijndaelEncryptor
         : RijndaelManagedBase, Encryptor
     {
         #region Constructors

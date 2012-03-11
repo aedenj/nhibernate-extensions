@@ -11,19 +11,20 @@ namespace NHibernateExtensions.Specs.SaltedAndEncryptedProperty
     [TestFixture("SomeStringThatReallyNeedsEncryption")]
     [TestFixture("Don't Leave Me Out")]
     [TestFixture("a")]
-    public class when_persisting_a_non_empty_value : PersistenceContext
+    [TestFixture("")]
+    public class when_persisting_a_non_null_value : PersistenceContext
     {
         #region scenario specific setup
         private SaltedEncryptedString TestType;
         private Encryptor Encryptor;
 
-        private readonly EntityWithEncryptedProperty UnpersistedEntity;
+        private readonly User UnpersistedEntity;
 
 
-        public when_persisting_a_non_empty_value(string UnencryptedMessage)
+        public when_persisting_a_non_null_value(string UnencryptedMessage)
         {
 
-            UnpersistedEntity = new EntityWithEncryptedProperty { EncryptedProperty = UnencryptedMessage };
+            UnpersistedEntity = new User { Password = UnencryptedMessage };
         }
 
         protected override void Context()
@@ -60,26 +61,26 @@ namespace NHibernateExtensions.Specs.SaltedAndEncryptedProperty
         [Test]
         public void then_the_original_value_is_not_stored()
         {
-            EncryptedValue().ShouldNotEqual(UnpersistedEntity.EncryptedProperty);
+            EncryptedValue().ShouldNotEqual(UnpersistedEntity.Password);
         }
 
 
         [Test]
         public void then_the_original_is_encrypted()
         {
-            Encryptor.Encrypt(UnpersistedEntity.EncryptedProperty, Salt()).ShouldEqual(EncryptedValue());            
+            Encryptor.Encrypt(UnpersistedEntity.Password, Salt()).ShouldEqual(EncryptedValue());            
         }
 
 
         #region scenario helpers
         private static string Salt()
         {
-            return QueryHelper.ExecuteScalarQuery<string>("SELECT Salt FROM EntityWithEncryptedProperty");
+            return QueryHelper.ExecuteScalarQuery<string>(Users.SaltOfFirstUser);
         }
 
         private static string EncryptedValue()
         {
-            return QueryHelper.ExecuteScalarQuery<string>("SELECT Value FROM EntityWithEncryptedProperty");
+            return QueryHelper.ExecuteScalarQuery<string>(Users.PasswordOfFirstUser);
         }
         #endregion
     }

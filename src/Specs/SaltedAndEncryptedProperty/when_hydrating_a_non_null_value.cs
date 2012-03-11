@@ -1,5 +1,4 @@
 using NUnit.Framework;
-
 using NHibernateExtensions.SaltedAndEncryptedProperty;
 
 
@@ -10,18 +9,18 @@ namespace NHibernateExtensions.Specs.SaltedAndEncryptedProperty
     [TestFixture("Don't Leave Me Out")]
     [TestFixture("a")]
     [TestFixture("")]
-    public class when_hydrating_a_non_empty_value : PersistenceContext
+    public class when_hydrating_a_non_null_value : PersistenceContext
     {
-        #region scenario specific setup
+        #region scenario setup
         private SaltedEncryptedString TestType;
-        private readonly EntityWithEncryptedProperty UnpersistedEntity;
-        private EntityWithEncryptedProperty RetreivedEntity;
+        private readonly User UnpersistedEntity;
+        private User RetreivedEntity;
         private Decryptor Decryptor;
 
 
-        public when_hydrating_a_non_empty_value(string UnencryptedMessage)
+        public when_hydrating_a_non_null_value(string UnencryptedMessage)
         {
-            UnpersistedEntity = new EntityWithEncryptedProperty { EncryptedProperty = UnencryptedMessage };
+            UnpersistedEntity = new User { Password = UnencryptedMessage };
         }
 
 
@@ -39,7 +38,7 @@ namespace NHibernateExtensions.Specs.SaltedAndEncryptedProperty
 
         protected override void BecauseOf()
         {
-            RetreivedEntity = CurrentSession.Load<EntityWithEncryptedProperty>(UnpersistedEntity.Id);
+            RetreivedEntity = CurrentSession.Load<User>(UnpersistedEntity.Id);
         }
 
 
@@ -53,19 +52,19 @@ namespace NHibernateExtensions.Specs.SaltedAndEncryptedProperty
         [Test]
         public void then_the_original_value_is_the_value_of_the_property_on_the_hydrated_object()
         {
-            Decryptor.Decrypt(EncryptedValue(), Salt()).ShouldEqual(RetreivedEntity.EncryptedProperty);
+            Decryptor.Decrypt(EncryptedValue(), Salt()).ShouldEqual(RetreivedEntity.Password);
         }
 
 
         #region scenario helpers
         private static string Salt()
         {
-            return QueryHelper.ExecuteScalarQuery<string>("SELECT Salt FROM EntityWithEncryptedProperty");
+            return QueryHelper.ExecuteScalarQuery<string>(Users.SaltOfFirstUser);
         }
 
         private static string EncryptedValue()
         {
-            return QueryHelper.ExecuteScalarQuery<string>("SELECT Value FROM EntityWithEncryptedProperty");
+            return QueryHelper.ExecuteScalarQuery<string>(Users.PasswordOfFirstUser);
         }
         #endregion
 

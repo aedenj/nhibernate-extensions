@@ -11,7 +11,7 @@ namespace NHibernateExtensions.SaltedAndEncryptedProperty
     /// Provides the ability to decrypt a string that has been encrypted using 
     /// the Rijndael algorithm
     /// </summary>
-    internal sealed class RijndaelDecryptor
+    sealed class RijndaelDecryptor
         : RijndaelManagedBase, Decryptor
     {
 

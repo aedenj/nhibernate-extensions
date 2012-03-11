@@ -6,7 +6,7 @@ using NHibernate.UserTypes;
 
 namespace NHibernateExtensions.SaltedAndEncryptedProperty 
 {
-    internal class SaltedEncryptedString
+    sealed class SaltedEncryptedString
         : IUserType
     {
         #region Constructors
@@ -45,8 +45,6 @@ namespace NHibernateExtensions.SaltedAndEncryptedProperty
 
         public int GetHashCode(object x)
         {
-            throw new NotImplementedException(); 
-
             if (x == null) throw new ArgumentNullException("x"); 
 
             return x.GetHashCode();
@@ -54,9 +52,9 @@ namespace NHibernateExtensions.SaltedAndEncryptedProperty
 
         public object NullSafeGet(IDataReader Reader, string[] Names, object Owner)
         {
-            Salt = (string)NHibernateUtil.String.NullSafeGet(Reader, Names[1]);
-            var StringToDecrypt = NHibernateUtil.String.NullSafeGet(Reader, Names[0]);
 
+            var StringToDecrypt = NHibernateUtil.String.NullSafeGet(Reader, Names[0]);
+            Salt = (string)NHibernateUtil.String.NullSafeGet(Reader, Names[1]);
              
             var DecryptorToUse = new CryptographyFactory().CreateDecryptor();
             return DecryptorToUse.Decrypt((string)StringToDecrypt, Salt);                        
@@ -75,8 +73,9 @@ namespace NHibernateExtensions.SaltedAndEncryptedProperty
             var Factory = new CryptographyFactory();
             var EncryptorToUse = Factory.CreateEncryptor();
 
-            if (string.IsNullOrEmpty(Salt) && !string.IsNullOrEmpty(UnencryptedMsg))
+            if (string.IsNullOrEmpty(Salt))
                 Salt = EncryptorToUse.GenerateSalt();
+
             var EncryptedMsg = EncryptorToUse.Encrypt(UnencryptedMsg, Salt);
 
             ////Set the values to persist
@@ -92,21 +91,16 @@ namespace NHibernateExtensions.SaltedAndEncryptedProperty
 
         public object Replace(object Original, object Target, object Owner)
         {
-            throw new NotImplementedException(); 
-
             return Original;
         }
 
         public object Assemble(object Cached, object Owner)
         {
-            throw new NotImplementedException(); 
-
             return DeepCopy(Cached);
         }
 
         public object Disassemble(object Value)
         {
-            throw new NotImplementedException(); 
             return DeepCopy(Value);
         }
         #endregion

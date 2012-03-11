@@ -1,6 +1,6 @@
 ﻿namespace NHibernateExtensions.SaltedAndEncryptedProperty
 {
-    public class CryptographyFactory
+    sealed class CryptographyFactory
     {
 
         public Encryptor CreateEncryptor()
