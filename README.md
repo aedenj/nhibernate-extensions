@@ -1,8 +1,12 @@
-nhibernate-extensions
+NHibernate Extensions
 =====================
 
-Various add-ins for NHibernate. Largely involving custom types.
+Currently there is only one custom type. Others to follow.
 
-Use
-======================
-For now the best way to get started is to look at the spec project. Specifically take a look at how the User model is configured in User.cs.
+
+### Salted & Encrypted Property ###
+
+  The first addition is a custom type that will encrypt and decrypt strying property of a class. Encryption automatically
+happens when the object is flushed to the persistence store and decrypted when a object is hydrated.
+
+The best way to get started is to look at the spec project. Specifically take a look at how the User model is configured in User.cs.
