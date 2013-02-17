@@ -7,14 +7,9 @@ using NHibernate.Cfg;
 using NHibernate.Context;
 using NHibernate.Tool.hbm2ddl;
 
-
-
-namespace NHibernateExtensions.Specs
-{
-    internal static class NHibernate
-    {
-        internal static void Setup()
-        {
+namespace NHibernateExtensions.Specs {
+    internal static class NHibernate {
+        internal static void Setup() {
             var DatabaseConfig =
                 MsSqlCeConfiguration.Standard
                     .ConnectionString("Data Source=NHibernateExtensions.sdf");
@@ -35,10 +30,7 @@ namespace NHibernateExtensions.Specs
             SessionFactory = FluentConfig.BuildSessionFactory();            
         }
 
-
-
-        private static Action<Configuration> SetupDatabaseSchema
-        {
+        private static Action<Configuration> SetupDatabaseSchema {
             get
             {
                 return delegate (Configuration Config)
@@ -50,25 +42,18 @@ namespace NHibernateExtensions.Specs
             }
         }
 
-        public static ISession GetCurrentSession()
-        {
+        public static ISession GetCurrentSession() {
             var Current = SessionFactory.OpenSession();
             CurrentSessionContext.Bind(Current);
             return Current;
         }
 
-        public static void CloseSession()
-        {
-
+        public static void CloseSession() {
             var Session = CurrentSessionContext.Unbind(SessionFactory);
             Session.Dispose();
         }
 
-
-        #region Privates
         private static ISessionFactory SessionFactory;
-        #endregion
-
     }
 
 }

@@ -1,26 +1,17 @@
 ﻿using NUnit.Framework;
 
-namespace NHibernateExtensions.Specs
-{
-
-    public abstract class ContextSpecification
-    {
+namespace NHibernateExtensions.Specs {
+    public abstract class ContextSpecification {
         [TestFixtureSetUp]
-        public void FixtureSetUp()
-        {
+        public void FixtureSetUp() {
             Context();
-
             BecauseOf();
         }
 
-
         [TestFixtureTearDown]
-        protected void FixtureTearDown()
-        {
+        protected void FixtureTearDown() {
             CleanUpContext();
         }
-
-
 
         protected virtual void Context() { }
         protected virtual void BecauseOf() { }

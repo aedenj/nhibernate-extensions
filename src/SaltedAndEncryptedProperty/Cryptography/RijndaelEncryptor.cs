@@ -3,25 +3,16 @@ using System.IO;
 using System.Text;
 using System.Security.Cryptography;
 
-
-
-namespace NHibernateExtensions.SaltedAndEncryptedProperty
-{
+namespace NHibernateExtensions.SaltedAndEncryptedProperty {
     /// <summary>
     /// Provides the ability to encrypt a string using the Rijndael algorithm
     /// </summary>
     sealed class RijndaelEncryptor
-        : RijndaelManagedBase, Encryptor
-    {
-        #region Constructors
+        : RijndaelManagedBase, Encryptor {
+
         public RijndaelEncryptor(byte[] TheKey, byte[] TheInitialVector)
-            : base(TheKey, TheInitialVector)
-        {}            
-        #endregion
-
-
-
-        #region Public Methods
+            : base(TheKey, TheInitialVector) {}            
+        
         /// <summary>
         /// Encrypts a string using the Rijndael algorithm.
         /// </summary>
@@ -31,8 +22,7 @@ namespace NHibernateExtensions.SaltedAndEncryptedProperty
         /// <exception cref="SaltRequiredException">
         /// Thrown if the salt is null or empty.
         /// </exception>
-        public string Encrypt(string StringToEncrypt, string Salt)
-        {
+        public string Encrypt(string StringToEncrypt, string Salt) {
             if (string.IsNullOrEmpty(Salt))
                 throw new SaltRequiredException("RijndaelEncryptor.Encrypt - Salt cannot by null or empty");
 
@@ -53,6 +43,5 @@ namespace NHibernateExtensions.SaltedAndEncryptedProperty
             
             return Convert.ToBase64String(Cipher);
         }
-        #endregion
     }
 }

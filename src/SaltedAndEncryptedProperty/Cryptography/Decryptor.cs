@@ -1,10 +1,5 @@
-﻿namespace NHibernateExtensions.SaltedAndEncryptedProperty
-{
-    /// <summary>
-    /// Provides decryption services
-    /// </summary>
-    public interface Decryptor
-    {
+﻿namespace NHibernateExtensions.SaltedAndEncryptedProperty {
+    public interface Decryptor {
         /// <summary>
         /// Encrypts a string.
         /// </summary>

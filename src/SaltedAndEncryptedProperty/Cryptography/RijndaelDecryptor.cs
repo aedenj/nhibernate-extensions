@@ -3,27 +3,17 @@ using System.IO;
 using System.Text;
 using System.Security.Cryptography;
 
-
-
-namespace NHibernateExtensions.SaltedAndEncryptedProperty
-{
+namespace NHibernateExtensions.SaltedAndEncryptedProperty {
     /// <summary>
     /// Provides the ability to decrypt a string that has been encrypted using 
     /// the Rijndael algorithm
     /// </summary>
     sealed class RijndaelDecryptor
-        : RijndaelManagedBase, Decryptor
-    {
-
-        #region Constructors
+        : RijndaelManagedBase, Decryptor {
+        
         public RijndaelDecryptor(byte[] TheKey, byte[] TheInitialVector)
-            : base(TheKey, TheInitialVector)
-        {}            
-        #endregion
-
-
-
-        #region Public Methods
+            : base(TheKey, TheInitialVector) {}            
+        
         /// <summary>
         /// Decrypts a string that was encrypted using the Rijndael algorithm.
         /// </summary>
@@ -33,8 +23,7 @@ namespace NHibernateExtensions.SaltedAndEncryptedProperty
         /// <exception cref="SaltRequiredException">
         /// Thrown if the salt is null or empty
         /// </exception>
-        public string Decrypt(string StringToDecrypt, string Salt)
-        {
+        public string Decrypt(string StringToDecrypt, string Salt) {
             if (string.IsNullOrEmpty(Salt))
                 throw new SaltRequiredException("RijndaelDecryptor.Decrypt - Salt cannot by null or empty");
 
@@ -55,9 +44,5 @@ namespace NHibernateExtensions.SaltedAndEncryptedProperty
 
             return DecryptedMessage.Remove(DecryptedMessage.IndexOf(Salt));
         }
-        #endregion
-
-
-
     }
 }
