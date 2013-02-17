@@ -1,7 +1,7 @@
 NHibernate Extensions
 =====================
 
-Currently there is only one custom type. Others to follow.
+Various extensions to NHibernate, which largely involve custom types. 
 
 
 ### Salted & Encrypted Property ###
@@ -10,3 +10,7 @@ Currently there is only one custom type. Others to follow.
 happens when the object is flushed to the persistence store and decrypted when a object is hydrated.
 
 The best way to get started is to look at the spec project. Specifically take a look at how the User model is configured in User.cs.
+
+### True Value Object ###
+
+  Under development
