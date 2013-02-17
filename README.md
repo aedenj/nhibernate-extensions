@@ -1,7 +1,7 @@
 NHibernate Extensions
 =====================
 
-Various extensions to NHibernate, which largely involve custom types. 
+Various add-ins for NHibernate that largely involve custom types. 
 
 
 ### Salted & Encrypted Property ###
