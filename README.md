@@ -11,6 +11,3 @@ happens when the object is flushed to the persistence store and decrypted when a
 
 The best way to get started is to look at the spec project. Specifically take a look at how the User model is configured in User.cs.
 
-### True Value Object ###
-
-  Under development
